@@ -2,7 +2,7 @@
 
 ScribeImage is a bash script that takes a batch of JPGs/PNGs, scans them for text with Tesseract OCR, and adds any detected text to the "Title" metadata tag.
 
-My motivation for making this is that I frequently have trouble finding specific memes in my collection. This is intended to make it easier, because you can search for JPGs based on the text contained in their metadata in the Windows 10 file explorer.
+My motivation for making this is that I frequently have trouble finding specific memes in my collection. This is intended to make it easier, because you can search for JPGs based on the text contained in their metadata in the Windows 10 file explorer. It should also work on Windows 11 although I haven't tested that as much.
 
 Please feel free to suggest improvements or mention any bugs you notice.
 
