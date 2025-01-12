@@ -1,7 +1,7 @@
 #!/bin/bash
 
 verbose_output=true
-# exec > >(tee logs.txt) 2>&1
+
 conditional_echo() {
   local input=$1
   if [ "$verbose_output" = true ]; then
@@ -61,7 +61,7 @@ while getopts "qdj" opt; do
       detect_jpegs
       ;;
     \? )
-      echo "Usage: cmd [-q] [-d] [-j]. Refer to README"
+      echo "Usage: cmd [-q] [-d] [-j]. Refer to README for help."
       exit 1
       ;;
   esac

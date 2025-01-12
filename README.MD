@@ -8,14 +8,14 @@ Please feel free to suggest improvements or mention any bugs you notice.
 
 ## SCRIPT USAGE
 
-Thus far, I've designed this script to work with Windows 10. The script itself can be run in any bash terminal, but I don't know how the searching would work on other operating systems. I may add support for other OS's later.
+Thus far, I've designed this script to work with the Windows 10 file explorer's search function. The script itself can be run in any bash terminal, but I don't know how the searching would work on other operating systems. I may add support for other OS's later.
 
 1. Clone the repo
 2. Install tesseract, imagemagick, and exiftool with whatever package manager you want. Here's how you would do it with chocolatey. `choco install tesseract imagemagick exiftool -y`
 
-3. Delete placeholder images in input/output_images folder (git doesn't track empty directories)
+3. Delete placeholder images in input/output_images folder (the placeholder images are there because git doesn't track empty directories)
 
-4. Copy all JPGs/PNGs that you want to be tagged to the input_images folder. I'd recommend keeping backup copies just in case something weird happens. I squashed bugs that showed up on my end but who knows what kind of weird JPGs/PNGs people have. Filenames should be UTF-8.
+4. Copy all JPGs/PNGs that you want to be tagged to the input_images folder. Filenames should be UTF-8.
 
 5. Run the script with whatever flags you want. Example: `./image_scribe.sh -q -d`
 
@@ -35,13 +35,13 @@ When I was testing this I created some scripts to clean up my images folder. If 
 
 -q: This flag doesn't run a script, but removes all logging from the terminal and any logging in logs.txt that don't come from exiftool. You may want to do this if you just want the script to run as fast as possible.
 
--d: This flag runs code that detects duplicate file names and appends _n to the end of the filename. This is necessary when you have JPGs/PNGs with the same file name because all pngs get converted to jpegs in order to be searchable.
+-d: This flag runs code that detects duplicate file names and appends _n to the end of the filename. This is necessary when you have JPGs/PNGs with the same file name because all pngs get converted to jpegs in order to be searchable via the Windows file explorer.
 
--j: This flag runs code that detects files with the .PNG extension that have JPEG as their MIME type (so basically fake PNGs) and changes their extension to JPG. I had a bunch of these for some reason, IIRC they were mobile screenshots.
+-j: This flag runs code that detects files with the .PNG extension that have JPEG as their MIME type (so basically fake PNGs) and changes their extension to JPG. I believe this sometimes happens with mobile screenshots.
 
 ## SEARCHING
 
-Open up an instance of file explorer.
+Open up an instance of Windows file explorer.
 
 If you haven't already, click the "View" option in the top left => click "Details pane". This pops up a little section on the right-hand side that will give you extra details about any file you click on in the explorer. For images, the pane will display (some) of the metadata tags. Any JPGs/PNGs that have been run through ScribeImage should have some values in the fields.
 
@@ -69,7 +69,7 @@ Presumably for compute reasons, if a metadata tag contains text that is more tha
 
 ### How come this doesn't have [insert feature here]
 
-90% chance I couldn't figure out how to do it and/or didn't feel it was worth the time investment. Please feel free to suggest improvements or mention any bugs you notice! As of May 2024 I'm unemployed and working on personal coding projects for fun right now so I have the time.
+90% chance I couldn't figure out how to do it and/or didn't feel it was worth the time investment. Please feel free to suggest improvements or mention any bugs you notice!
 
 ## TODO
 
@@ -80,4 +80,3 @@ Presumably for compute reasons, if a metadata tag contains text that is more tha
 - mobile version?
 - flag that allows user to cut off text at 999 characters so images with a lot of text are still searchable
 - flag that clears output/input folders before/after script runs
-- look into filename character issue again
