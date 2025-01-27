@@ -2,20 +2,20 @@
 
 ScribeImage is a bash script that takes a batch of JPGs/PNGs, scans them for text with Tesseract OCR, and adds any detected text to the "Title" metadata tag.
 
-My motivation for making this is that I frequently have trouble finding specific memes in my collection. This is intended to make it easier, because you can search for JPGs based on the text contained in their metadata in the Windows 10 file explorer. It should also work on Windows 11 although I haven't tested that as much.
+My motivation for making this is that I frequently have trouble finding specific memes in my collection. This is intended to make it easier, because you can search for JPGs based on the text contained in their metadata in the Windows 10/11 file explorer.
 
 Please feel free to suggest improvements or mention any bugs you notice.
 
 ## SCRIPT USAGE
 
-Thus far, I've designed this script to work with the Windows 10 file explorer's search function. The script itself can be run in any bash terminal, but I don't know how the searching would work on other operating systems. I may add support for other OS's later.
+Thus far, I've designed this script to work with the Windows 10/11 file explorer's search function. The script itself can be run in any bash terminal, but I don't know how the searching would work on other operating systems. I may add support for other OS's later.
 
 1. Clone the repo
 2. Install tesseract, imagemagick, and exiftool with whatever package manager you want. Here's how you would do it with chocolatey. `choco install tesseract imagemagick exiftool -y`
 
-3. Delete placeholder images in input/output_images folder (the placeholder images are there because git doesn't track empty directories)
+3. Delete placeholder images in input/output_images folder (the placeholder images are there to ensure they are tracked by git because git doesn't track empty directories)
 
-4. Copy all JPGs/PNGs that you want to be tagged to the input_images folder. Filenames should be UTF-8.
+4. Copy all JPGs/PNGs that you want to be tagged to the input_images folder. Filenames must be UTF-8.
 
 5. Run the script with whatever flags you want. Example: `./image_scribe.sh -q -d`
 
@@ -31,9 +31,9 @@ Keep in mind the script does not clear either the input or output folders before
 
 ### FLAGS
 
-When I was testing this I created some scripts to clean up my images folder. If you add some flags to the bash command it will run that code before it runs the main one that actually processes the images with tesseract. There are also some flags concerning logging.
+When I was testing this I created some scripts to clean up my images folder. If you add some flags to the bash command it will run that code before it runs the main one that actually processes the images with tesseract.
 
--q: This flag doesn't run a script, but removes all logging from the terminal and any logging in logs.txt that don't come from exiftool. You may want to do this if you just want the script to run as fast as possible.
+-q: This flag doesn't run a script, but removes all logging from the terminal and any logging in logs.txt that don't come from exiftool. Do this if you just want the script to run as fast as possible.
 
 -d: This flag runs code that detects duplicate file names and appends _n to the end of the filename. This is necessary when you have JPGs/PNGs with the same file name because all pngs get converted to jpegs in order to be searchable via the Windows file explorer.
 
@@ -61,11 +61,11 @@ JPG/JPEG/PNG. Any PNGs will be converted to JPGs before they are scanned by Tess
 
 ### Why does the script convert PNG to JPEG’s?
 
-While EXIFTOOL has the capability of updating metadata tags on PNGs - I don’t know of a way to search for PNGs based on their metadata via the Windows 10 UI, so I convert them to JPEGS. If you happen to know of a way to do so, please let me know.
+While EXIFTOOL has the capability of updating metadata tags on PNGs - I don’t know of a way to search for PNGs based on their metadata via the Windows 10/11 UI, so I convert them to JPEGS. If you happen to know of a way to do so, please let me know.
 
 ### I'm searching for a keyword and my image isn't showing up even though I'm positive it has the text inside of it, WTF?
 
-Presumably for compute reasons, if a metadata tag contains text that is more than 1,000 characters, the Windows 10 UI won't be able to search it
+Presumably for compute reasons, if a metadata tag contains text that is more than 1,000 characters, the Windows 10/11 UI won't be able to search it
 
 ### How come this doesn't have [insert feature here]
 
@@ -79,4 +79,4 @@ Presumably for compute reasons, if a metadata tag contains text that is more tha
 - get working on other OS
 - mobile version?
 - flag that allows user to cut off text at 999 characters so images with a lot of text are still searchable
-- flag that clears output/input folders before/after script runs
+- flag that clears input folder after script runs
